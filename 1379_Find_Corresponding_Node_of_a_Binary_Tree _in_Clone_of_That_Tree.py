@@ -1,0 +1,37 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def getTargetCopy(self,o,c, target):
+        stack_o =[]
+        stack_c =[]
+        node_o = o
+        node_c = c
+
+        while stack_o or node_c:
+            
+            while node_o:
+                
+                stack_o.append(node_o)
+                stack_c.append(node_c)
+                
+                node_o = node_o.left
+                node_c = node_c.left
+            
+            node_o = stack_o.pop()
+            node_c = stack_c.pop()
+            
+            if node_o == target:
+                return node_c
+        
+
+            node_o = node_o.right
+            node_c = node_c.right
+        
+
+
+
