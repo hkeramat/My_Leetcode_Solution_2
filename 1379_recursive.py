@@ -7,31 +7,18 @@
 
 class Solution:
     def getTargetCopy(self,o,c, target):
-        stack_o =[]
-        stack_c =[]
-        node_o = o
-        node_c = c
+        def inorder(o,c):
+            if o:
+                inorder(o.left, c.left)
 
-        while stack_o or node_c:
-            
-            while node_o:
-                
-                stack_o.append(node_o)
-                stack_c.append(node_c)
-                
-                node_o = node_o.left
-                node_c = node_c.left
-            
-            node_o = stack_o.pop()
-            node_c = stack_c.pop()
-            
-            if node_o == target:
-                return node_c
-        
+                if o is target:
+                    return c
 
-            node_o = node_o.right
-            node_c = node_c.right
-        
+            inorder(o.right, c.right)
+
+        inorder(o,c)
+
+        return c
 
 
 
